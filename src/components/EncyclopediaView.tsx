@@ -546,7 +546,7 @@ export const EncyclopediaView: React.FC<EncyclopediaViewProps> = ({
                   {/* Photo container */}
                   <div className="aspect-[4/3] overflow-hidden bg-black/40 relative">
                     <img
-                      src={entry.image || '/src/assets/images/hero_betta_halfmoon_1793164844961.jpg'}
+                      src={resolveBettaImage(entry.image) || resolveBettaImage('/src/assets/images/hero_betta_halfmoon_1793164844961.jpg')}
                       alt={entry.name}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-100"
