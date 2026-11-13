@@ -1,5 +1,5 @@
 const bettaImages = import.meta.glob(
-  '../assets/images/*',
+  '../assets/images/**/*',
   {
     eager: true,
     query: '?url',
@@ -12,15 +12,18 @@ export const resolveBettaImage = (imagePath?: string) => {
 
   const filename = imagePath.split('/').pop() || '';
 
-  if (imagePath.includes('/assets/aistudio/')) {
-    return `${import.meta.env.BASE_URL}assets/aistudio/${filename}`;
+  if (imagePath.includes('/src/assets/images/')) {
+    const match = Object.entries(bettaImages).find(
+      ([path]) => path.endsWith(`/${filename}`)
+    );
+    return match ? match[1] : '';
   }
 
-  const match = Object.entries(bettaImages).find(
-    ([path]) => path.endsWith(`/${filename}`)
-  );
+  if (imagePath.startsWith('/assets/')) {
+    return `${import.meta.env.BASE_URL}${imagePath.slice(1)}`;
+  }
 
-  return match ? match[1] : imagePath;
+  return imagePath;
 };
 export type EntryClassification = 'wild-species' | 'fin-form' | 'color-pattern';
 export type CatalogueSection = 'wild' | 'ornamental';
