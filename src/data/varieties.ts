@@ -1,3 +1,23 @@
+const bettaImages = import.meta.glob(
+  '../assets/images/*',
+  {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }
+) as Record<string, string>;
+
+export const resolveBettaImage = (imagePath?: string) => {
+  if (!imagePath) return '';
+
+  const filename = imagePath.split('/').pop();
+
+  const match = Object.entries(bettaImages).find(
+    ([path]) => path.endsWith(`/${filename}`)
+  );
+
+  return match ? match[1] : imagePath;
+};
 export type EntryClassification = 'wild-species' | 'fin-form' | 'color-pattern';
 export type CatalogueSection = 'wild' | 'ornamental';
 export type OrnamentalCategory = 'fin-form' | 'color-scale' | 'pattern-morph';
