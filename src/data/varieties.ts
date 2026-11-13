@@ -10,7 +10,11 @@ const bettaImages = import.meta.glob(
 export const resolveBettaImage = (imagePath?: string) => {
   if (!imagePath) return '';
 
-  const filename = imagePath.split('/').pop();
+  const filename = imagePath.split('/').pop() || '';
+
+  if (imagePath.includes('/assets/aistudio/')) {
+    return `${import.meta.env.BASE_URL}assets/aistudio/${filename}`;
+  }
 
   const match = Object.entries(bettaImages).find(
     ([path]) => path.endsWith(`/${filename}`)
