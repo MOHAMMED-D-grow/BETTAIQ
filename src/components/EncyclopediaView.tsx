@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import {
   BettaEncyclopediaEntry,
+  resolveBettaImage,
   BETTA_ENCYCLOPEDIA,
   WILD_BETTA_SPECIES,
   ORNAMENTAL_BETTA_VARIETIES,
