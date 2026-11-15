@@ -158,13 +158,17 @@ export const EncyclopediaDetail: React.FC<EncyclopediaDetailProps> = ({
         <div className="lg:col-span-7 space-y-4">
           <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-black/40 backdrop-blur-xl border border-white/20 shadow-2xl relative group">
             {entry.image ? (
-              <img
-                src={entry.image}
-                alt={entry.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104 brightness-100"
-              />
-            ) : (
+  <img
+    src={entry.image.startsWith('http')
+      ? entry.image
+      : `${import.meta.env.BASE_URL}${entry.image.replace(/^\/+/, '')}`}
+    alt={entry.name}
+    onError={(e) => {
+      e.currentTarget.style.display = 'none';
+    }}
+    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-104 brightness-100"
+  />
+) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-slate-300 p-8 text-center">
                 <Fish className="w-14 h-14 opacity-50 mb-3 text-cyan-400" />
                 <span className="text-xs font-mono text-cyan-200">
