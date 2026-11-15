@@ -194,7 +194,7 @@ export const EncyclopediaView: React.FC<EncyclopediaViewProps> = ({
               rgba(2, 9, 24, 0.45) 45%,
               rgba(1, 6, 16, 0.78) 100%
             ),
-            url('/assets/explore/deep_bright_ocean.jpg')
+            url(`${import.meta.env.BASE_URL}assets/explore/deep_bright_ocean.jpg`)
           `,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
